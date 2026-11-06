@@ -26,12 +26,12 @@ function icono(ruta, nombre, clase = "icono") {
     onerror="this.outerHTML='<span class=&quot;${clase} icono-falta&quot;>${inicial}</span>'">`;
 }
 
-function toast(texto, ok = true) {
+function toast(texto, ok = true, ms = 2600) {
   const t = document.createElement("div");
   t.className = "toast " + (ok ? "ok" : "mal");
   t.textContent = texto;
   $("#toasts").appendChild(t);
-  setTimeout(() => t.remove(), 2600);
+  setTimeout(() => t.remove(), ms);
 }
 
 // ------------------------------------------------------------------ estado
@@ -42,6 +42,7 @@ const S = {
   editando: false,
   firmas: {},
   ultimoAck: null,
+  avisosVistos: {},
   monitores: [],
 };
 
@@ -61,6 +62,11 @@ async function orden(cuerpo, etiqueta) {
     const r = await enviarJSON("/orden", cuerpo);
     if (!r.ok) toast(r.codigo ? t("err." + r.codigo) : (r.error || t("noSePudo")), false);
     else if (etiqueta) toast("→ " + etiqueta);
+    // Una vez por sesión: el juego estaba minimizado, casi siempre por la pantalla completa exclusiva.
+    if (r.aviso && !S.avisosVistos[r.aviso]) {
+      S.avisosVistos[r.aviso] = true;
+      toast(t("aviso." + r.aviso), false, 9000);
+    }
   } catch (e) {
     toast(t("servidorNoDisponible"), false);
   }

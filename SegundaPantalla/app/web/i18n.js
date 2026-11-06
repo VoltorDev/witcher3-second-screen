@@ -42,6 +42,7 @@ const TEXTOS = {
     "err.juego_cerrado": "Witcher 3 no está abierto", "err.sin_foco": "No pude poner el juego en primer plano",
     "err.menu_pausa": "El juego sigue en el menú de pausa", "err.sin_objeto": "No llevas ese objeto",
     "err.mision_desaparecida": "Esa misión ya no está en la lista", "err.solo_windows": "Solo funciona en Windows",
+    "aviso.pantalla_completa": "El juego estaba minimizado: en Opciones > Vídeo usa \"Ventana sin bordes\" en lugar de \"Pantalla completa\" para que las órdenes lleguen siempre.",
     // index.html
     "ui.personalizar": "Personalizar", "ui.titulo": "Personalizar", "ui.listo": "Listo",
     "ui.ayuda": "Arrastra un panel por su título para moverlo y por la esquina inferior derecha para cambiar su tamaño. Los cambios se guardan solos.",
@@ -98,6 +99,7 @@ const TEXTOS = {
     "err.juego_cerrado": "The Witcher 3 is not running", "err.sin_foco": "Couldn't bring the game to the foreground",
     "err.menu_pausa": "The game is still in the pause menu", "err.sin_objeto": "You don't carry that item",
     "err.mision_desaparecida": "That quest is no longer in the list", "err.solo_windows": "Windows only",
+    "aviso.pantalla_completa": "The game was minimized: in Options > Video use \"Borderless Window\" instead of \"Full Screen\" so commands always arrive.",
     "ui.personalizar": "Customize", "ui.titulo": "Customize", "ui.listo": "Done",
     "ui.ayuda": "Drag a panel by its title to move it, and by its bottom-right corner to resize it. Changes are saved automatically.",
     "ui.paneles": "Visible panels", "ui.pantalla": "Display", "ui.monitor": "Monitor", "ui.completa": "Open in fullscreen",

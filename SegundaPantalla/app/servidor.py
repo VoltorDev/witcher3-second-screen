@@ -637,6 +637,16 @@ def enfocar(hwnd):
     return user32.GetForegroundWindow() == hwnd
 
 
+def esperar_restaurado(hwnd, limite):
+    """Espera a que una ventana restaurada deje de estar minimizada y siga en primer plano."""
+    t0 = time.time()
+    while time.time() - t0 < limite:
+        if not user32.IsIconic(hwnd) and user32.GetForegroundWindow() == hwnd:
+            return True
+        time.sleep(0.05)
+    return False
+
+
 def _pulsar_vk(vk, abajo):
     inp = INPUT(type=1)
     inp.u.ki = KEYBDINPUT(wVk=vk, wScan=0, dwFlags=0 if abajo else KEYEVENTF_KEYUP, time=0, dwExtraInfo=0)
@@ -761,12 +771,26 @@ class Ordenes:
             if not juego:
                 return fallo("juego_cerrado", "Witcher 3 no está abierto")
             retardo = self.cfg.get("retardoTeclaMs", 35) / 1000
+            aviso = None
             if user32.GetForegroundWindow() != juego:
+                # En pantalla completa exclusiva el juego se minimiza al perder el foco y tarda en
+                # volver (cambia de modo de vídeo): las teclas enviadas antes se pierden.
+                minimizado = bool(user32.IsIconic(juego))
                 if not self.cfg.get("enfocarJuego", True) or not enfocar(juego):
                     return fallo("sin_foco", "no pude poner el juego en primer plano")
+                if minimizado:
+                    aviso = "pantalla_completa"
+                    if not esperar_restaurado(juego, self.cfg.get("esperaRestaurarMs", 4000) / 1000):
+                        return fallo("sin_foco", "el juego no volvió a primer plano")
+                    time.sleep(self.cfg.get("esperaTrasRestaurarMs", 800) / 1000)
                 time.sleep(self.cfg.get("esperaTrasEnfocarMs", 120) / 1000)
                 # Al perder el foco, el juego abre el menú de pausa: se cierra con Escape solo si
-                # el mod confirma que está abierto, y se espera a que confirme que se cerró.
+                # el mod confirma que está abierto, y se espera a que confirme que se cerró. El aviso
+                # del mod llega por el log con algo de retraso: si aún no ha llegado, se le da margen.
+                t0 = time.time()
+                limite = self.cfg.get("esperaMenuPausaMs", 500) / 1000
+                while not self.estado.instantanea().get("menuPausa") and time.time() - t0 < limite:
+                    time.sleep(0.05)
                 if self.estado.instantanea().get("menuPausa"):
                     pulsar_sc(0x01, retardo)
                     t0 = time.time()
@@ -779,7 +803,11 @@ class Ordenes:
             for dgt in digitos:
                 pulsar_f(1 + dgt, retardo)
             pulsar_f(11, retardo)
-        return {"ok": True, "secuencia": "".join(map(str, digitos))}
+        r = {"ok": True, "secuencia": "".join(map(str, digitos))}
+        if aviso:
+            log("el juego estaba minimizado (¿pantalla completa exclusiva?)")
+            r["aviso"] = aviso
+        return r
 
 
 # ------------------------------------------------------------------ atajos globales

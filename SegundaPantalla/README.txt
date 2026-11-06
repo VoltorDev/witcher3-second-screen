@@ -47,8 +47,17 @@ INSTALL
 USE
   - Click a potion to drink it, Steel/Silver on an oil to apply it, a bomb to
     equip it, food to eat it, a sign to select it, a quest to track it.
-  - Clicking the panel pauses the game (Witcher 3 opens its pause menu when it
-    loses focus); the app resumes it and runs the action in about a second.
+  - While you play, Witcher 3 keeps the mouse on the game screen (it moves the
+    camera), so you can't simply move it to the panel. The fastest ways:
+      * Quick slots with hotkeys (Customize > quick slots, e.g. Ctrl+1): the
+        game keeps focus, so there is no pause and no Alt+Tab.
+      * Phone, tablet or touchscreen monitor: touching the panel doesn't take
+        focus from the game, so actions apply without pausing.
+  - Clicking the panel with the mouse (after Alt+Tab) works too, but pauses
+    the game (Witcher 3 opens its pause menu when it loses focus); the app
+    resumes it and runs the action in about a second. Use Display Mode
+    "Borderless Window": in "Full Screen" the game minimizes on Alt+Tab and
+    commands may not arrive.
   - "Customize" (bottom corner, or key E): move/resize/hide panels, monitor,
     language, side of the vitality bars, quick slots with optional hotkeys.
   - No second monitor? Customize > "Phone or tablet": tick the box and type
@@ -75,7 +84,9 @@ TROUBLESHOOTING
     Mods\modSegundaPantalla exists. If Documents\The Witcher 3\scriptslog.txt
     only has one line, the game reused scripts compiled without -debugscripts:
     the Steam launcher fixes this automatically on the next start.
-  - A command doesn't arrive: raise "key press duration" in Customize > Advanced.
+  - A command doesn't arrive: first check Options > Video > Display Mode is
+    "Borderless Window", not "Full Screen". Then raise "key press duration"
+    in Customize > Advanced.
     Tutorial pop-ups and menus block commands, like they block the keyboard.
   - The installer can't download Python, or says its SHA-256 doesn't match:
     it stops without changing anything. Check your connection and run it
@@ -119,8 +130,16 @@ USO
   - Clic en una poción para beberla, en Acero/Plata para aplicar un aceite, en
     una bomba para equiparla, en comida para tomarla, en una señal para
     elegirla o en una misión para seguirla.
-  - Al clicar el panel el juego se pausa (abre su menú al perder el foco); la
-    app lo reanuda y ejecuta la orden en un segundo aproximadamente.
+  - Mientras juegas, Witcher 3 retiene el ratón en su pantalla (mueve la
+    cámara), así que no puedes llevarlo al panel sin más. Lo más cómodo:
+      * Accesos rápidos con atajo (Personalizar > accesos rápidos, p. ej.
+        Ctrl+1): el juego no pierde el foco, ni se pausa ni hace falta Alt+Tab.
+      * Móvil, tableta o monitor táctil: tocar el panel no quita el foco al
+        juego, así que las órdenes se aplican sin pausa.
+  - Con el ratón (tras Alt+Tab) también funciona, pero el juego se pausa (abre
+    su menú al perder el foco); la app lo reanuda y ejecuta la orden en un
+    segundo aproximadamente. Usa el modo "Ventana sin bordes": en "Pantalla
+    completa" el juego se minimiza con Alt+Tab y las órdenes pueden perderse.
   - "Personalizar" (esquina inferior o tecla E): mover, redimensionar u ocultar
     paneles, monitor, idioma, lado de las barras y accesos rápidos con atajos.
   - ¿Sin segundo monitor? Personalizar > "Móvil o tableta": marca la casilla
