@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Witcher 3 Second Screen</title>
+<link rel="stylesheet" href="/web/estilo.css">
+</head>
+<body>
+<div id="aviso" class="aviso" hidden></div>
+<main id="rejilla" class="rejilla"></main>
+
+<button id="btnEditar" class="btn-editar" data-i18n="ui.personalizar">Personalizar</button>
+
+<aside id="panel" class="panel" hidden>
+  <header class="panel-cab">
+    <h2 data-i18n="ui.titulo">Personalizar</h2>
+    <button class="btn" data-accion="cerrar" data-i18n="ui.listo">Listo</button>
+  </header>
+  <p class="ayuda" data-i18n="ui.ayuda"></p>
+
+  <section>
+    <h3 data-i18n="ui.paneles"></h3>
+    <div id="listaWidgets" class="lista-widgets"></div>
+  </section>
+
+  <section>
+    <h3 data-i18n="ui.pantalla"></h3>
+    <label class="campo"><span data-i18n="ui.monitor"></span>
+      <select id="selMonitor"></select>
+    </label>
+    <label class="campo"><span data-i18n="ui.espejo"></span>
+      <select id="selEspejo">
+        <option value="auto" data-i18n="ui.espejo.auto"></option>
+        <option value="false" data-i18n="ui.espejo.no"></option>
+        <option value="true" data-i18n="ui.espejo.si"></option>
+      </select>
+    </label>
+    <label class="campo"><span data-i18n="ui.idioma"></span>
+      <select id="selIdioma">
+        <option value="auto" data-i18n="ui.idioma.auto"></option>
+        <option value="es">Español</option>
+        <option value="en">English</option>
+      </select>
+    </label>
+    <label class="check"><input type="checkbox" id="chkCompleta"> <span data-i18n="ui.completa"></span></label>
+    <div class="fila-botones">
+      <button class="btn" data-accion="mover" data-i18n="ui.mover"></button>
+    </div>
+  </section>
+
+  <section id="seccionRed">
+    <h3 data-i18n="ui.red"></h3>
+    <p class="ayuda" data-i18n="ui.redAyuda"></p>
+    <label class="check"><input type="checkbox" id="chkRed"> <span data-i18n="ui.redActivar"></span></label>
+    <div id="infoRed"></div>
+  </section>
+
+  <section>
+    <h3 data-i18n="ui.rapidos"></h3>
+    <p class="ayuda" data-i18n="ui.rapidosAyuda"></p>
+    <div id="listaRanuras" class="lista-ranuras"></div>
+    <div class="fila-botones">
+      <button class="btn" data-accion="nuevaRanura" data-i18n="ui.anadir"></button>
+    </div>
+  </section>
+
+  <section>
+    <h3 data-i18n="ui.avanzado"></h3>
+    <label class="campo"><span data-i18n="ui.retardo"></span>
+      <input type="number" id="numRetardo" min="10" max="200" step="5">
+    </label>
+    <p class="ayuda" data-i18n="ui.retardoAyuda"></p>
+    <p class="ayuda" id="infoRutas"></p>
+    <p class="ayuda" id="infoVersion"></p>
+    <div class="fila-botones">
+      <button class="btn btn-peligro" data-accion="restaurar" data-i18n="ui.restaurar"></button>
+    </div>
+  </section>
+</aside>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script src="/web/i18n.js"></script>
+<script src="/web/app.js"></script>
+</body>
+</html>
